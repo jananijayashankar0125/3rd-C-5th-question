@@ -1,3 +1,12 @@
+#test cases
+#4
+#1 2
+#2 2
+#3 2
+#4 9
+#2
+#3 3
+#4 9
 '''
 This function takes two arguments,
 data1 and data2, which contain
@@ -40,19 +49,25 @@ def uniqueUpdate(data1, data2):
     for [k, v2] in data2:
         # Check if there is a key-value
         # pair with key = k in data1
-        if k in data1:
-            v1 = data1[k]
-            # (k, v1) in dict1
-            # Check if v1 != v2
-            if v1 != v2:
-                # Add (k, [v1, v2])
-                # to dictionary                
-                dupKeys[k] = [v1, v2]
-                # Remove (k, v1) from data1
-                del data1[k]
-            else:
-                # Add (k, v2) to data1
-                data1[k] = v2
+        #(no such pair found yet)
+        kFound = False
+
+        for k1 in data1.items():
+            if k1==k:
+                # Found pair with key = k
+                kFound = True   
+                
+                if (v1 != v2):
+                    
+                    # Add (k, [v1, v2])
+                    # to dictionary                
+                    dupKeys[k] = [v1, v2]
+                     # Remove (k, v1) from data1
+                    del data1[k]
+                    
+        if not kFound:
+            # Add (k, v2) to data1
+            data1[k] = v2
     # After processing all (k, v2) in
     # data2, return the dictionary
     return dupKeys
